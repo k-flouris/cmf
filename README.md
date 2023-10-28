@@ -1,7 +1,7 @@
 # Canonical Manifold Flows README
 
 This is the code we used for our paper, [Canonical normalizing flows for manifold learning]
-(https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023).  Our code builds directly off   from the [RNF codebase][Caterini et al.](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2021), which we cite in our manuscript. aterini et al.'s code did not have a license, and given its public availability, we used it freely, dependencies do have licenses, all of which do allow us to use the respective code.
+(https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023).  Our code builds directly off   from the [RNF codebase][Caterini et al.](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2021), which we cite in our manuscript. Caterini et al.'s code did not have a license, and given its public availability, we used it freely, dependencies do have licenses, all of which do allow us to use the respective code.
 
 The up-to-date code can be found at: https://github.com/k-flouris/cmf
 
