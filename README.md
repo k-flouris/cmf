@@ -1,7 +1,9 @@
 # Canonical Manifold Flows README
 
 This is the code we used for our paper, [Canonical normalizing flows for manifold learning]
-(https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023). 
+(https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023).  Our code builds directly off   from the [RNF codebase][Caterini et al.](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2021), which we cite in our manuscript. aterini et al.'s code did not have a license, and given its public availability, we used it freely, dependencies do have licenses, all of which do allow us to use the respective code.
+
+The up-to-date code can be found at: https://github.com/k-flouris/cmf
 
 ## Setup
 
@@ -55,7 +57,7 @@ This will produce the plots:
 
 To train a tabular model, run:
 
-    CUDA_VISIBLE_DEVICES=0 ./main.py --model non-square --dataset <dataset-name>
+    CUDA_VISIBLE_DEVICES=0 ./main.py --model non-square --g_ij_loss True --dataset <dataset-name>
 
 where `<dataset-name>` is one of `power`, `gas`, `hepmass`, or `miniboone`.
 To evaluate a single completed run, locate its run directory -- say it is `<run>` -- and run the command
