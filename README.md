@@ -1,7 +1,7 @@
 # Canonical Manifold Flows README
 
 This is the code we used for our paper, [Canonical normalizing flows for manifold learning]
-(https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023).  Our code builds directly off   from the [RNF codebase][Caterini et al.](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2021), which we cite in our manuscript. Caterini et al.'s code did not have a license, and given its public availability, we used it freely, dependencies do have licenses, all of which do allow us to use the respective code.
+(https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023). Our code builds directly off from the [RNF codebase][Caterini et al.](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2021), which we cite in our manuscript. Caterini et al.'s code did not have a license, and given its public availability, we used it freely. Dependencies do have licenses, all of which allow us to use the respective code.
 
 The up-to-date code can be found at: https://github.com/k-flouris/cmf
 
@@ -26,21 +26,19 @@ If you don't use `conda`, then please see `environment.yml` for a list of requir
 
 ### Obtaining datasets
 
-Our code runs on several types of datasets, including synthetic 2-D data, tabular data, and image data. The 2-D datasets are automatically generated, and the image datasets are downloaded automatically. However the tabular datasets will need to be manually downloaded from [this location](https://zenodo.org/record/1161203). The following should do the trick:
+Our code runs on several types of datasets, including synthetic 2-D data, tabular data, and image data. The 2-D datasets are automatically generated, and the image datasets are downloaded automatically. However, the tabular datasets will need to be manually downloaded from [this location](https://zenodo.org/record/1161203). The following should do the trick:
 
     mkdir -p data/ && wget -O - https://zenodo.org/record/1161203/files/data.tar.gz | tar --strip-components=1 -C data/ -xvzf - data/{gas,hepmass,miniboone,power}
 
 This will download the data to `data/`. If `data/` is in the same directory as `main.py`, then everything will work out-of-the-box by default. If not, the location to the data directory will need to be specified as an argument to `main.py` (see `--help`).
 
-
-
 To train our model on the sphere dataset, run:
 
-    ./main.py --model non-square --g_ij_loss True --dataset 3d-circle 
- 
-Note that this will actually launch a grid of runs over various values for the `regularization_param`, `likelihood_warmup`, and `lr` config values as described in Appendix F.1. To overrirde the grid search and just launch a specific configuration, please edit the `non-square` section of the file `config/two_d.py` by removing the `GridParams` specification, `g_ij_loss` includes the regularization which activates the canonical manifold learning flow. 
+    ./main.py --model non-square --dataset 3d-circle --config g_ij_loss=True
 
-If you are on a GPU device, please specify `CUDA_VISIBLE_DEVICES=`, i.e. to the empty string, as this experiment is not currently supported to run on the GPU.
+Note that this will actually launch a grid of runs over various values for the `regularization_param`, `likelihood_warmup`, and `lr` config values as described in Appendix F.1. To override the grid search and just launch a specific configuration, please edit the `non-square` section of the file `config/two_d.py` by removing the `GridParams` specification. `--config g_ij_loss=True` is used to overide the config parameters includes and 'g_ij_loss' includes the regularization which activates the canonical manifold learning flow.
+
+If you are on a GPU device, please specify `CUDA_VISIBLE_DEVICES=`, i.e., to the empty string, as this experiment is not currently supported to run on the GPU.
 
 To launch a baseline two-step procedure run, add the flag `--baseline` to the command above.
 
@@ -57,22 +55,20 @@ This will produce the plots:
 
 To train a tabular model, run:
 
-    CUDA_VISIBLE_DEVICES=0 ./main.py --model non-square --g_ij_loss True --dataset <dataset-name>
+    CUDA_VISIBLE_DEVICES=0 ./main.py --model non-square --config g_ij_loss=True --dataset <dataset-name>
 
 where `<dataset-name>` is one of `power`, `gas`, `hepmass`, or `miniboone`.
 To evaluate a single completed run, locate its run directory -- say it is `<run>` -- and run the command
 
     CUDA_VISIBLE_DEVICES=0 ./main.py --resume <run> --test
 
-
-
 ## Image Experiments
 
 To train an image model, run:
 
-    CUDA_VISIBLE_DEVICES=<device(s)> ./main.py --model non-square --g_ij_loss True --dataset <dataset-name>
+    CUDA_VISIBLE_DEVICES=<device(s)> ./main.py --model non-square  --dataset <dataset-name> --config g_ij_loss=True
 
-where `<devices(s)>` is a string specifying one or more `CUDA` devices, e.g. `<devices(s)>=2,3,4`, and `<dataset-name>` is either `mnist`, `fashion-mnist`, `svhn`, or `cifar10` (although we only include results from MNIST and Fashion-MNIST in the manuscript).
+where `<devices(s)>` is a string specifying one or more `CUDA` devices, e.g., `<devices(s)>=2,3,4`, and `<dataset-name>` is either `mnist`, `fashion-mnist`, `svhn`, or `cifar10` (although we only include results from MNIST and Fashion-MNIST in the manuscript).
 
 Again, an RNFs-TS method can be launched by appending the flag `--baseline`.
 
@@ -80,7 +76,7 @@ A variety of parameters were modified as noted in Appendix F.3; to launch a part
 
 ## Miscellaneous - Run Directory and Tensorboard Logging
 
-By default, running `./main.py` will create a directory inside `runs/` that contains
+By default, running `./main.py` will create a directory inside `runs/` that contains:
 
 - Configuration info for the run
 - Version control info for the point at which the run was started
@@ -89,7 +85,7 @@ By default, running `./main.py` will create a directory inside `runs/` that cont
 This allows easily resuming a previous run via the `--resume` flag, which takes as argument the directory of the run that should be resumed.
 To avoid creating this directory, use the `--nosave` flag.
 
-The `runs/` directory also contain Tensorboard logs giving various information about the training run, including 2-D density plots in this case. To inspect this run the following command in a new terminal:
+The `runs/` directory also contains Tensorboard logs giving various information about the training run, including 2-D density plots in this case. To inspect this, run the following command in a new terminal:
 
     tensorboard --logdir runs/ --port=8008
 
@@ -103,7 +99,6 @@ Besides the differences listed in the first section, there are some major code c
 
 ## CMF Density
 
-The main workhorse of the codebase is the `NonSquareHeadDensity` class (in `cif/models/components/densities/non_square.py`), which allows for specification of canonical manifold flows. This class acts as a `Density` object, and specifies the head of the canonical manifold learning flows
+The main workhorse of the codebase is the `NonSquareHeadDensity` class (in `cif/models/components/densities/non_square.py`), which allows for specification of canonical manifold flows. This class acts as a `Density` object, and specifies the head of the canonical manifold learning flows.
 
 # Bibtex
-
