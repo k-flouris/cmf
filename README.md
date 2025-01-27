@@ -142,22 +142,24 @@ If you use this code in your research, please cite our work:
       doi={10.48550/arXiv.2310.12743}
     }
 
-# Canonical Manifold Learning Flow (CMF)
 
     
 ## Summary
 Canonical Manifold Flows (CMF) are a class of generative modeling techniques that assume a low-dimensional manifold description of the data. The embedding of such a manifold into the high-dimensional space of the data is achieved via learnable invertible transformations. Once the manifold is properly aligned via a reconstruction loss, the probability density is tractable on the manifold, and maximum likelihood can be used to optimize the network parameters. Naturally, the lower-dimensional representation of the data requires an injective mapping. Recent approaches have enforced that the density aligns with the modeled manifold while efficiently calculating the density volume-change term when embedding into the higher-dimensional space. However, unless the injective mapping is analytically predefined, the learned manifold is not necessarily an efficient representation of the data. The latent dimensions of such models frequently learn an entangled intrinsic basis, with degenerate information being stored in each dimension. Alternatively, if a locally orthogonal and/or sparse basis is learned, termed a canonical intrinsic basis, it can serve in learning a more compact latent space representation. Toward this end, CMF proposes a method where a novel optimization objective enforces the transformation matrix to have few prominent and non-degenerate basis functions. By minimizing the off-diagonal manifold metric elements' l1-norm, such a basis is achieved, which is simultaneously sparse and/or orthogonal. Canonical manifold flow yields a more efficient use of the latent space, automatically generating fewer prominent and distinct dimensions to represent data, and consequently a better approximation of target distributions than other manifold flow methods in most experiments conducted, resulting in lower FID scores.
     
 
+
 ## Method
 
 ### Canonical Intrinsic Basis
 We demonstrate the performance of CMF using synthetic data generated on a fuzzy line with noise in the perpendicular and parallel directions. A comparison of density plots for fuzzy lines learned using RNF and CMF is shown below:
 
-![Density plot for a fuzzy line with RNF](figures/linernf-1.png)
-**(a) Density plot for a fuzzy line learned with RNF**
+<p align="center">
+  <img src="figures/linernf-1.png" width="45%" />
+  <img src="figures/linecan-1.png" width="45%" />
+</p>
 
-![Density plot for a fuzzy line with CMF](figures/linecan-1.png)
+**(a) Density plot for a fuzzy line learned with RNF**  
 **(b) Density plot for a fuzzy line learned with CMF**
 
 CMF results in non-degenerate latent variables, which better capture the structure of the underlying manifold.
@@ -184,16 +186,20 @@ CMF was evaluated on two simulated datasets:
 
 Comparison results for RNF and CMF methods:
 
-![Hollow sphere learned with RNF](figures/spherernf-1.png)
-**(a) Hollow sphere learned with RNF**
+<p align="center">
+  <img src="figures/spherernf-1.png" width="45%" />
+  <img src="figures/spherecan-1.png" width="45%" />
+</p>
 
-![Hollow sphere learned with CMF](figures/spherecan-1.png)
+**(a) Hollow sphere learned with RNF**  
 **(b) Hollow sphere learned with CMF**
 
-![Moebius band learned with RNF](figures/moebiusrnf-1.png)
-**(c) Moebius band learned with RNF**
+<p align="center">
+  <img src="figures/moebiusrnf-1.png" width="45%" />
+  <img src="figures/moebiuscan-1.png" width="45%" />
+</p>
 
-![Moebius band learned with CMF](figures/moebiuscan-1.png)
+**(c) Moebius band learned with RNF**  
 **(d) Moebius band learned with CMF**
 
 Results indicate that CMF achieves a better separation of latent components and improved learning of complex topological structures.
@@ -206,16 +212,22 @@ CMF was also evaluated on popular image datasets: MNIST, Fashion-MNIST, Omniglot
 
 The sparsity and orthogonalization encouraged by CMF are demonstrated by analyzing the metric tensor:
 
-![Fashion-MNIST RNF](figures/fm10_rnf_plot_g_combined-1.png)
-**(a) Fashion-MNIST trained with RNF (MACS=0.03)**
+<p align="center">
+  <img src="figures/fm10_rnf_plot_g_combined-1.png" width="45%" />
+  <img src="figures/fm10_cmf_plot_g_combined-1.png" width="45%" />
+</p>
 
-![Fashion-MNIST CMF](figures/fm10_cmf_plot_g_combined-1.png)
+**(a) Fashion-MNIST trained with RNF (MACS=0.03)**  
 **(b) Fashion-MNIST trained with CMF (MACS=0.02)**
 
-![Omniglot RNF](figures/om10_rnf_plot_g_combined-1.png)
-**(c) Omniglot trained with RNF (MACS=0.04)**
+<p align="center">
+  <img src="figures/om10_rnf_plot_g_combined-1.png" width="45%" />
+  <img src="figures/om10_cmf_plot_g_combined-1.png" width="45%" />
+</p>
 
-![Omniglot CMF](figures/om10_cmf_plot_g_combined-1.png)
+**(c) Omniglot trained with RNF (MACS=0.04)**  
 **(d) Omniglot trained with CMF (MACS=0.03)**
 
 CMF achieves lower Mean Absolute Cosine Similarity (MACS) values, indicating better orthogonalization and improved representation.
+
+
