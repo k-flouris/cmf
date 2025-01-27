@@ -1,4 +1,8 @@
+Notes: 1. Added simulated datasets and plotting functions
+       2. Fixed the submodules setup.  
+
 # Canonical Manifold Flows README
+
 
 This is the code we used for our paper, [Canonical normalizing flows for manifold learning](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2023). Our code builds directly off from the [RNF codebase][Caterini et al.](https://doi.org/10.48550/arXiv.2310.12743) (NeurIPS 2021), which we cite in our manuscript. Caterini et al.'s code did not have a license, and given its public availability, we used it freely. Dependencies do have licenses, all of which allow us to use the respective code.
 
