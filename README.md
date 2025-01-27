@@ -6,10 +6,15 @@ The up-to-date code can be found at: https://github.com/k-flouris/cmf
 
 ## Setup
 
-First, install submodules:
+Clone the repository with git:
 
-    $ git submodule init
-    $ git submodule update
+	git clone https://github.com/k-flouris/cmf.git
+
+if using the ZIP file make sure submodules are installed correctly. 
+
+First, install submodules and choose versions by running:
+	
+    ./setup_submodules.sh
 
 Next, install dependencies. If you use `conda`, the following will create an environment called `canonical`:
 
@@ -21,7 +26,7 @@ Activate this with:
 
 before running any code or tests.
 
-If you don't use `conda`, then please see `environment.yml` for a list of required packages, which will need to be installed manually e.g. via `pip`.
+If you don't use `conda`, then please see `environment.yml` for a list of required packages, which will need to be installed manually e.g. via `pip`. Note that py and sh files may need permission e.g. chmod + x setup_submodules.sh
 
 ## Obtaining Datasets
 
@@ -33,7 +38,7 @@ This will download the data to `data/`. If `data/` is in the same directory as `
 
 ## Simulated Datasets
 
-Our code supports a variety of simulated datasets, including spheres and fuzzy line manifolds embedded in higher dimensions.
+Our code supports a variety of simulated datasets, including spheres and fuzzy line manifolds embedded in higher dimensions, or make your own in two_d.py. 
 
 To train our model on the sphere dataset, run:
 
@@ -51,7 +56,7 @@ To launch a baseline two-step procedure run, add the flag `--baseline` to the co
 
 To train our model on a randomized 6D sphere dataset, run:
 
-    CCUDA_VISIBLE_DEVICES=<device(s)> ./main.py --model non-square --dataset sinusoid-1-6 \
+    CUDA_VISIBLE_DEVICES=<device(s)> ./main.py --model non-square --dataset sinusoid-1-6 \
     --config max_epochs=1000 --config log_jacobian_method=cholesky --config hutchinson_samples=1 \
     --config g_ij_loss=True --config centering_loss=False --config g_ij_global_loss=True \
     --config centering_regularization_param=0 --config metric_regularization_param=1 \
@@ -61,7 +66,7 @@ To train our model on a randomized 6D sphere dataset, run:
     --num-seeds 5 --logdir-root runs/simulated/global_topo_6d_multi_embedings_properplot
 
     
-Where `<devices(s)>` is a string specifying one or more `CUDA` devices, e.g., `2,3,4`.
+Where `<devices(s)>` is a string specifying one or more `CUDA` devices, e.g., `2,3,4`, but can also be omited if not parallel or on CPU.
 
 These configurations provide fine-grained control over the training process, ensuring optimal learning performance. 
 
