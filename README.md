@@ -43,8 +43,7 @@ To train our model on the fuzzy line dataset, run:
 
     ./main.py --model non-square --dataset fuzzy-line --config g_ij_loss=True --config lr=0.0005 --config latent_dimension=4 --config log_jacobian_method=cholesky
     
-Note that this will actually launch a grid of runs over various values for the `regularization_param`, `likelihood_warmup`, and `lr` config values as described in Appendix F.1. To override the grid search and just launch a specific configuration, please edit the `non-square` section of the file `config/two_d.py` by removing the `GridParams` specification. `--config g_ij_loss=True` is used to overide the config parameters includes and 'g_ij_loss' includes the regularization which activates the canonical manifold learning flow.
-
+Note that this will actually launch a grid of runs over various values for the `regularization_param`, `likelihood_warmup`, and `lr` config values as described in Appendix F.1. To override the grid search and just launch a specific configuration, please edit the `non-square` section of the file `config/two_d.py` by removing the `GridParams` specification. `--config g_ij_loss=True` is used to overide the config parameters includes and 'g_ij_loss' includes the regularization which activates the canonical manifold learning flow. Ideally, parameters should be adjusted accordingly either in the config file or a command.
 
 To launch a baseline two-step procedure run, add the flag `--baseline` to the command above.
 
