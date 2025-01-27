@@ -154,10 +154,10 @@ Canonical Manifold Flows (CMF) are a class of generative modeling techniques tha
 ### Canonical Intrinsic Basis
 We demonstrate the performance of CMF using synthetic data generated on a fuzzy line with noise in the perpendicular and parallel directions. A comparison of density plots for fuzzy lines learned using RNF and CMF is shown below:
 
-![Density plot for a fuzzy line with RNF](figures/linernf.pdf)
+![Density plot for a fuzzy line with RNF](figures/linernf-1.png)
 **(a) Density plot for a fuzzy line learned with RNF**
 
-![Density plot for a fuzzy line with CMF](figures/linecan.pdf)
+![Density plot for a fuzzy line with CMF](figures/linecan-1.png)
 **(b) Density plot for a fuzzy line learned with CMF**
 
 CMF results in non-degenerate latent variables, which better capture the structure of the underlying manifold.
@@ -184,16 +184,16 @@ CMF was evaluated on two simulated datasets:
 
 Comparison results for RNF and CMF methods:
 
-![Hollow sphere learned with RNF](figures/spherernf.pdf)
+![Hollow sphere learned with RNF](figures/spherernf-1.png)
 **(a) Hollow sphere learned with RNF**
 
-![Hollow sphere learned with CMF](figures/spherecan.pdf)
+![Hollow sphere learned with CMF](figures/spherecan-1.png)
 **(b) Hollow sphere learned with CMF**
 
-![Moebius band learned with RNF](figures/moebiusrnf.pdf)
+![Moebius band learned with RNF](figures/moebiusrnf-1.png)
 **(c) Moebius band learned with RNF**
 
-![Moebius band learned with CMF](figures/moebiuscan.pdf)
+![Moebius band learned with CMF](figures/moebiuscan-1.png)
 **(d) Moebius band learned with CMF**
 
 Results indicate that CMF achieves a better separation of latent components and improved learning of complex topological structures.
@@ -206,16 +206,16 @@ CMF was also evaluated on popular image datasets: MNIST, Fashion-MNIST, Omniglot
 
 The sparsity and orthogonalization encouraged by CMF are demonstrated by analyzing the metric tensor:
 
-![Fashion-MNIST RNF](figures/fm10_rnf_plot_g_combined.pdf)
+![Fashion-MNIST RNF](figures/fm10_rnf_plot_g_combined-1.png)
 **(a) Fashion-MNIST trained with RNF (MACS=0.03)**
 
-![Fashion-MNIST CMF](figures/fm10_cmf_plot_g_combined.pdf)
+![Fashion-MNIST CMF](figures/fm10_cmf_plot_g_combined-1.png)
 **(b) Fashion-MNIST trained with CMF (MACS=0.02)**
 
-![Omniglot RNF](figures/om10_rnf_plot_g_combined.pdf)
+![Omniglot RNF](figures/om10_rnf_plot_g_combined-1.png)
 **(c) Omniglot trained with RNF (MACS=0.04)**
 
-![Omniglot CMF](figures/om10_cmf_plot_g_combined.pdf)
+![Omniglot CMF](figures/om10_cmf_plot_g_combined-1.png)
 **(d) Omniglot trained with CMF (MACS=0.03)**
 
 CMF achieves lower Mean Absolute Cosine Similarity (MACS) values, indicating better orthogonalization and improved representation.
