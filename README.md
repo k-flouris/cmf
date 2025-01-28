@@ -130,10 +130,6 @@ To inspect results using Tensorboard, run:
 
 Then navigate to http://localhost:8008 to view logs.
 
-## Major Differences Versus Non-Square Codebase
-
-Besides the differences listed in the first section, there are major code changes allowing canonical manifold flows to function in this codebase.
-
 ## CMF Density
 
 The main workhorse of the codebase is the `NonSquareHeadDensity` class (in `cif/models/components/densities/non_square.py`), which allows for specification of canonical manifold flows. This class acts as a `Density` object, and specifies the head of the canonical manifold learning flows.
