@@ -132,7 +132,7 @@ Then navigate to http://localhost:8008 to view logs.
 
 ## CMF Density
 
-The main workhorse of the codebase is the `NonSquareHeadDensity` class (in `cif/models/components/densities/non_square.py`), which allows for specification of canonical manifold flows. This class acts as a `Density` object, and specifies the head of the canonical manifold learning flows.
+The main workhorse of the codebase is the `NonSquareHeadDensity` class (in `cmf/models/components/densities/non_square.py`), which allows for specification of canonical manifold flows. This class acts as a `Density` object, and specifies the head of the canonical manifold learning flows.
 
 ## BibTeX Citation
 
