@@ -56,7 +56,7 @@ Note that this will actually launch a grid of runs over various values for the `
 
 To launch a baseline two-step procedure run, add the flag `--baseline` to the command above.
 
-### 6D Sinusoid 1D embedded ion 6D ataset Example
+### 6D Sinusoid 1D embedded ion 6D dataset Example
 
 To train our model on a randomized 6D sphere dataset, run:
 
@@ -140,7 +140,7 @@ If you use this code in your research, please cite our work:
 
     @article{flouris2023canonical,
       title={Canonical Normalizing Flows for Manifold Learning},
-      author={Kyriakos Flouris and others},
+      author={Kyriakos Flouris and Ender Konukoglu},
       journal={NeurIPS},
       year={2023},
       doi={10.48550/arXiv.2310.12743}
